@@ -11,7 +11,7 @@ def Ok():
         messagebox.showinfo("", "Blank not allowed")
     elif len(password) < 4:
         messagebox.showinfo("", "Password must be at least 4 characters long")
-    elif uname == "ADMIN" and password == "123":
+    elif uname == "ADMIN" and password == "1234":
         NewWn(uname)
     else:
         messagebox.showinfo("", "Incorrect Username or Password")
