@@ -19,10 +19,11 @@ def Ok():
 def NewWn(username):
     newWindow = Toplevel(wn)
     newWindow.title("Dashboard")
-    newWindow.geometry("300x250")
+    newWindow.geometry("300x300")
     newWindow.config(bg="pink")
 
-    Label(newWindow, text=f"Welcome, {username}!", font=("Arial", 12, "bold")).pack(pady=10)
+    welcome_label = Label(newWindow, text=f"Welcome, {username}!", font=("Arial", 12, "bold"))
+    welcome_label.pack(pady=10)
 
     # ฟังก์ชันอัปเดตเวลาปัจจุบัน
     def update_time():
@@ -35,13 +36,22 @@ def NewWn(username):
     time_label.pack(pady=5)
     update_time()
 
-    # ฟังก์ชันเปลี่ยนสีพื้นหลัง
-    def change_bg():
-        colors = ["lightblue", "lightgreen", "lightyellow", "lightgray", "lightcoral"]
-        newWindow.config(bg=random.choice(colors))
+    # แสดงวันที่ปัจจุบัน
+    date_label = Label(newWindow, text=f"Current Date: {datetime.datetime.now().strftime('%Y-%m-%d')}", font=("Arial", 10))
+    date_label.pack(pady=5)
 
-    # ปุ่มเปลี่ยนสีพื้นหลัง
-    Button(newWindow, text="Change Background", command=change_bg).pack(pady=5)
+    # ฟังก์ชันเช็คอิน
+    def check_in():
+        check_in_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        messagebox.showinfo("Check-In", f"Checked in at {check_in_time}")
+        check_in_label.config(text=f"Last Check-In: {check_in_time}")
+
+    # ปุ่มเช็คอิน
+    Button(newWindow, text="Check-In", command=check_in).pack(pady=5)
+
+    # แสดงเวลาเช็คอินล่าสุด
+    check_in_label = Label(newWindow, text="Last Check-In: None", font=("Arial", 10))
+    check_in_label.pack(pady=5)
 
     # ปุ่ม Logout
     def logout():
